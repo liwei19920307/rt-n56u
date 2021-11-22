@@ -44,9 +44,7 @@ function getHashId(){
 }
 
 function get_page_id(){
-	var page_id = getHashId() + 1;
-    if (support_2g_radio())
-        page_id += 1;
+	var page_id = getHashId() + 2;
 	if (support_5g_radio())
 		page_id += 1;
 	return page_id;

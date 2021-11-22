@@ -109,37 +109,16 @@ ifeq ($(CONFIG_FIRMWARE_INCLUDE_LANG_UK),y)
 	sed $(COPYR_PATTERN) -i $(ROMFS_DIR)/www/UK.dict
 	sed $(DWURL_PATTERN) -i $(ROMFS_DIR)/www/UK.dict
 endif
-ifeq ($(CONFIG_FIRMWARE_INCLUDE_LANG_CN),y)
-	echo "LANG_CN=简体中文" >> $(ROMFS_DIR)/www/EN.header
-	cp dict/CN.dict $(ROMFS_DIR)/www
-	sed $(BOARD_PATTERN) -i $(ROMFS_DIR)/www/CN.dict
-	sed $(COPYR_PATTERN) -i $(ROMFS_DIR)/www/CN.dict
-	sed $(DWURL_PATTERN) -i $(ROMFS_DIR)/www/CN.dict
-	sed $(DWURL_MOD_PATTERN) -i $(ROMFS_DIR)/www/CN.dict
-endif
 	cat $(ROMFS_DIR)/www/EN.header dict/EN.footer > $(ROMFS_DIR)/www/EN.dict
 	sed $(BOARD_PATTERN) -i $(ROMFS_DIR)/www/EN.dict
 	sed $(COPYR_PATTERN) -i $(ROMFS_DIR)/www/EN.dict
 	sed $(DWURL_PATTERN) -i $(ROMFS_DIR)/www/EN.dict
-	sed $(DWURL_MOD_PATTERN) -i $(ROMFS_DIR)/www/EN.dict
 	rm -f $(ROMFS_DIR)/www/EN.header
 	rm -f $(ROMFS_DIR)/www/bootstrap/js/bootstrap.js
 	rm -f $(ROMFS_DIR)/www/bootstrap/js/engage.itoggle.js
 	rm -f $(ROMFS_DIR)/www/bootstrap/js/jquery.backgroundpos.min.js
 	rm -f $(ROMFS_DIR)/www/bootstrap/js/jquery.easing.1.3.js
 	rm -f $(ROMFS_DIR)/www/bootstrap/css/bootstrap.css
-ifeq ($(BOARD_HAS_2G_RADIO),0)
-	rm -f $(INSTALLDIR)/www/Advanced_ACL2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WAdvanced2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WGuest2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_Wireless2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WMode2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WSecurity2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Main_WStatus2g_Content.asp
-	rm -f $(INSTALLDIR)/www/wireless_2g.js
-	rm -f $(INSTALLDIR)/www/wds_aplist_2g.asp
-	rm -f $(INSTALLDIR)/www/device-map/router2g.asp
-endif
 ifeq ($(BOARD_HAS_5G_RADIO),0)
 	rm -f $(INSTALLDIR)/www/Advanced_ACL_Content.asp
 	rm -f $(INSTALLDIR)/www/Advanced_WAdvanced_Content.asp
@@ -177,24 +156,6 @@ ifneq ($(STORAGE_ENABLED),y)
 	rm -rf $(INSTALLDIR)/www/aidisk
 	rm -rf $(INSTALLDIR)/www/images/AiDisk
 	rm -rf $(INSTALLDIR)/www/images/Tree
-endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT),y)
-	rm -f $(INSTALLDIR)/www/scutclient.asp
-	rm -f $(INSTALLDIR)/www/scutclient_log.asp
-	rm -f $(INSTALLDIR)/www/scutclient_action.asp
-endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_MENTOHUST),y)
-	rm -f $(INSTALLDIR)/www/mentohust.asp
-	rm -f $(INSTALLDIR)/www/mentohust_log.asp
-	rm -f $(INSTALLDIR)/www/mentohust_action.asp
-endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER),y)
-	rm -f $(INSTALLDIR)/www/dns-forwarder.asp
-endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
-	rm -f $(INSTALLDIR)/www/Shadowsocks.asp
-	rm -f $(INSTALLDIR)/www/Shadowsocks_action.asp
-	rm -f $(INSTALLDIR)/www/Shadowsocks_log.asp
 endif
 
 clean:
